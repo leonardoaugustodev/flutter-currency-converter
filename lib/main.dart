@@ -13,12 +13,7 @@ void main() async {
       theme: ThemeData(
           hintColor: Colors.amber,
           primaryColor: Colors.white,
-          inputDecorationTheme: InputDecorationTheme(
-              enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white)),
-              focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.amber)),
-              hintStyle: TextStyle(color: Colors.amber)))));
+          )));
 }
 
 Future<Map> getData() async {
@@ -39,14 +34,14 @@ class _HomeState extends State<Home> {
   double dollar;
   double euro;
 
-  void _clearAll(){
+  void _clearAll() {
     realController.text = "";
     dollarController.text = "";
     euroController.text = "";
   }
 
   void _realChanged(String text) {
-    if(text.isEmpty){
+    if (text.isEmpty) {
       _clearAll();
       return;
     }
@@ -56,7 +51,7 @@ class _HomeState extends State<Home> {
   }
 
   void _dollarChanged(String text) {
-    if(text.isEmpty){
+    if (text.isEmpty) {
       _clearAll();
       return;
     }
@@ -66,7 +61,7 @@ class _HomeState extends State<Home> {
   }
 
   void _euroChanged(String text) {
-    if(text.isEmpty){
+    if (text.isEmpty) {
       _clearAll();
       return;
     }
@@ -136,10 +131,17 @@ Widget buildTextField(String label, String prefix,
     TextEditingController controller, Function handleChange) {
   return TextField(
     decoration: InputDecoration(
-        labelText: label,
-        labelStyle: TextStyle(color: Colors.amber),
-        border: OutlineInputBorder(),
-        prefixText: prefix),
+      labelText: label,
+      labelStyle: TextStyle(color: Colors.amber),
+      prefixText: prefix,
+      enabledBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: Colors.white),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: Colors.amber),
+      ),
+      hintStyle: TextStyle(color: Colors.amber)
+    ),
     style: TextStyle(fontSize: 25.0, color: Colors.amber),
     controller: controller,
     onChanged: handleChange,
